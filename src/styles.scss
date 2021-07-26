@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+@import '../src/app/sass/variables';
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html{
+  box-sizing: border-box;
+  font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
+
+  @media only screen and (max-width: $laptop-medium){
+    font-size: 58%;
+  }
+
+  @media only screen and (max-width: $laptop-small){
+    font-size: 54%;
+  }
+
+  @media only screen and (max-width: $tablet-big){
+    font-size: 50%;
+  }
+
+  @media only screen and (max-width: $tablet-small){
+    font-size: 48%;
+  }
+
+  @media only screen and (max-width: $tablet){
+    font-size: 44%;
+  }
+
+  @media only screen and (max-width: $mobile-large){
+    font-size: 40%;
+  }
+
+  @media only screen and (max-width: $mobile-medium){
+    font-size: 36%;
+  }
+
+  @media only screen and (max-width: $mobile-small){
+    font-size: 30%;
+  }
+}

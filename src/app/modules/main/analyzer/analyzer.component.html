@@ -1,0 +1,51 @@
+<section class="content">
+  <div class="card">
+    <h1>
+      Real
+      <span>Alignment to the expected script: {{realSimilarity}}%</span>
+    </h1>
+    <table *ngIf="calls.activeTranscript$ | async as call" width="100%">
+      <thead style="text-align: left; border-bottom: 1px solid;">
+      <th style="padding-right: 17px;">Time</th>
+      <th style="padding-right: 48px;">Speaker</th>
+      <th>Sentence</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let transcript of call.transcript">
+        <td>{{ transcript.timeFrom }}</td>
+        <td>{{ call.getSpeaker(transcript.channel) }}</td>        
+        <td [ngStyle]="{'background-color':transcript.matchingSentence !== undefined || null ? '#DEDEE3':'white'}"
+        #tooltip="matTooltip" 
+        [matTooltip]="(transcript.similarity * 100 | number: '2.0-0')+'% matching with line #'+transcript?.matchingLine" [matTooltipPosition]="'above'" >
+          {{ transcript.sentence }}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h1>
+      Expected
+      <span>Percentage of script covered: {{expectedSimilarity}}%</span>
+    </h1>
+    <table *ngIf="calls.activeTranscript$ | async as call" width="100%">
+      <thead style="text-align: left; border-bottom: 1px solid;">
+      <th style="padding-right: 17px;">Line</th>
+      <th style="padding-right: 17px;">Similarity</th>
+      <th>Sentence</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let script of call.script">
+        <td>{{ script.order }}</td>
+        <td>{{script.similarity}}</td>
+        <td
+        #tooltip="matTooltip" 
+        [matTooltip]="(script.similarity * 100 | number: '2.0-0')+'% matching with line #'+script?.matchingLine" [matTooltipPosition]="'above'" >
+          {{ script.sentence }}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
